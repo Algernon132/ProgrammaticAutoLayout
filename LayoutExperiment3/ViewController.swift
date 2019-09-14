@@ -16,6 +16,8 @@ class ViewController: UIViewController {
     var trailingConstraint: NSLayoutConstraint?
     var topConstraint: NSLayoutConstraint?
     var bottomConstraint: NSLayoutConstraint?
+    var aspectWidthConstraint: NSLayoutConstraint?
+    var aspectHeightConstraint: NSLayoutConstraint?
     
     @IBAction func sixteenNineButtonPressed(_ sender: Any) {
     }
@@ -37,18 +39,35 @@ class ViewController: UIViewController {
         // why the following? https://stackoverflow.com/questions/47800210/when-should-translatesautoresizingmaskintoconstraints-be-set-to-true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
-        leadingConstraint = NSLayoutConstraint(item: imageView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 20.0)
+        
+
+       leadingConstraint = NSLayoutConstraint(item: imageView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 20.0)
         
         trailingConstraint = NSLayoutConstraint(item: imageView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: -20.0)
         
-        topConstraint = NSLayoutConstraint(item: imageView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 20.0)
+       topConstraint = NSLayoutConstraint(item: imageView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 20.0)
         
-        bottomConstraint = NSLayoutConstraint(item: imageView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: -20.0)
+       bottomConstraint = NSLayoutConstraint(item: imageView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: -20.0)
         
-        leadingConstraint?.isActive = true
-        trailingConstraint?.isActive = true
-        topConstraint?.isActive = true
-        bottomConstraint?.isActive = true
+        aspectWidthConstraint = NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 0.8, constant: 1)
+        
+          aspectHeightConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: imageView, attribute: .width, multiplier: 0.75, constant: 1)
+        
+        
+//        leadingConstraint?.isActive = true
+//        trailingConstraint?.isActive = true
+//        topConstraint?.isActive = true
+//        bottomConstraint?.isActive = true
+        
+        aspectWidthConstraint?.isActive = true
+        aspectHeightConstraint?.isActive = true
+        
+        imageView.center.x = self.view.center.x
+        imageView.center.y = self.view.center.y
+        /*
+         https://philandrews.io/post/swift-aligning-objects-programmatically
+         */
+        
         
     }
 }
